@@ -62,6 +62,7 @@ RUN pip3 install colormap
 RUN pip3 install easydev
 
 # Setup MSDeformAttn
+# This can be run from within the container without TORCH_CUDA_ARCH_LIST
 ENV TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5;8.0;8.6+PTX"
 RUN cd oneformer/modeling/pixel_decoder/ops && \
     chmod +x make.sh && \
