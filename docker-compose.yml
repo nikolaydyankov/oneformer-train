@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  oneformer-test:
+    image: oneformer-test-image
+    # runtime: nvidia
+    container_name: oneformer-test
+    volumes:
+      - .:/OneFormer/workspace
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    shm_size: '16gb'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
