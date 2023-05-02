@@ -40,7 +40,6 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.12.0-Linux-x86_64
 
 # Set some environment variables
 ENV PATH /opt/conda/bin:$PATH
-# ENV WANDB_API_KEY=646b74fba301c9f817c9ad79fe08ecd78469acb8
 ENV CUDA_HOME=/usr/local/cuda
 ENV FORCE_CUDA=1
 
@@ -51,13 +50,10 @@ WORKDIR /OneFormer
 # Install dependencies
 RUN conda install pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.3 -c pytorch -c conda-forge
 RUN pip3 install -U opencv-python
-# RUN python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
 RUN python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
 RUN pip3 install git+https://github.com/cocodataset/panopticapi.git
 RUN pip3 install git+https://github.com/mcordts/cityscapesScripts.git
 RUN pip3 install -r requirements.txt
-# RUN pip3 install wandb
-# RUN wandb login
 RUN pip3 install colormap
 RUN pip3 install easydev
 
